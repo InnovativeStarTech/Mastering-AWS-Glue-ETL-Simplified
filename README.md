@@ -1,4 +1,3 @@
-
 # Whats included 
 The repo is to supplement the youtube video on PySpark for Glue. It includes a cloudformation template which creates the s3 bucket, glue tables, IAM roles, and csv data files.
 
