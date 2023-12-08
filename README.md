@@ -1,5 +1,5 @@
 # Whats included 
-The repo is to supplement the [youtube video!]([https://www.youtube.com/your-channel-name](https://www.youtube.com/@starttech5697/videos)) on Mastering AWS Glue. It includes a cloudformation template which creates the s3 bucket, glue tables, IAM roles, and csv data files.
+The repo is to supplement the [![YouTube Channel](https://img.shields.io/badge/YouTube-Channel-red?style=for-the-badge&logo=youtube)]([https://www.youtube.com/your-channel-name](https://www.youtube.com/@starttech5697/videos) on Mastering AWS Glue. It includes a cloudformation template which creates the s3 bucket, glue tables, IAM roles, and csv data files.
 
 # Overview
 1.  Spin up resources using cloudformation template
