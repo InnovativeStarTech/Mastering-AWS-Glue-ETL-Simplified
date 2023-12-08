@@ -22,7 +22,8 @@ Below are the schemas for the tables created in the Glue Data Catalog by the clo
 
 ### Employees
 
-EmployeeID	ManagerID	FirstName	LastName	FullName	JobTitle	OrganizationLevel	MaritalStatus	Gender	Territory	Country	Group
-276	274	Linda	Mitchell	Linda Mitchell	Sales Representative	3	M	F	Southwest	US	North America
-277	274	Jillian	Carson	Jillian Carson	Sales Representative	3	S	F	Central	US	North America
-275	274	Michael	Blythe	Michael Blythe	Sales Representative	3	S
+|EmployeeID |ManagerID |FirstName |LastName |FullName |JobTitle |OrganizationLevel |MaritalStatus |Gender |Territory |Country |Group|
+|-----------|----------|----------|--------|---------|-----------|-----------|---------------------|-------|--------|---------|----------|
+|276 |274 |Linda |Mitchell |Linda Mitchell |Sales Representative |3 |M |F |Southwest |US |North America|
+|277 |274 |Jillian |Carson |Jillian Carson |Sales Representative |3 |S |F |Central |US |North America|
+|275 |274 |Michael |Blythe |Michael Blythe |Sales Representative |3 |S|
