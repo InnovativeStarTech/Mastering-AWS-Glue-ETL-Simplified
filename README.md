@@ -3,7 +3,7 @@ Below are the schemas for the tables created in the Glue Data Catalog by the clo
 
 ### Customers
 
-| Customerid | Firstname  | Lastname |Fullname|
+| Customerid | Firstname  | Lastname |Fullname                    |
 |-----------|----------|------------------------------------------|
 |293        |	Catherine |	Abel                 |	Catherine Abel  |
 | 295       |	Kim	      |   Abercrombie        |	Kim Abercrombie |
