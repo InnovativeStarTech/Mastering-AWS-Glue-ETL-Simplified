@@ -1,3 +1,9 @@
+#Overview
+* Spin up resources using cloudformation template
+* Add csv files to S3 bucket in relative folder location
+* Create Glue notebook
+* Execute PySpark code
+
 # Data
 Below are the schemas for the tables created in the Glue Data Catalog by the cloudformation template. They also include a small sample of data to aid the explanation of the coding syntax.
 
