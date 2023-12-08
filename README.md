@@ -4,10 +4,10 @@ Below are the schemas for the tables created in the Glue Data Catalog by the clo
 ### Customers
 
 | Customerid | Firstname  | Lastname |Fullname|
-|-----------|----------|----------|
-|293|	Catherine	Abel|	Catherine Abel|
-| 295|	Kim	|Abercrombie|	Kim Abercrombie|
-|  297|	Humberto|	Acevedo|	Humberto Acevedo |
+|-----------|----------|------------------------------------------|
+|293        |	Catherine |	Abel                 |	Catherine Abel  |
+| 295       |	Kim	      |   Abercrombie        |	Kim Abercrombie |
+|  297      |	Humberto  |	Acevedo              |	Humberto Acevedo|
   
   |Customerid|Firstname	|Lastname|	Fullname|
   293	Catherine	Abel	Catherine Abel
