@@ -1,4 +1,4 @@
-Data
+#Data
 Below are the schemas for the tables created in the Glue Data Catalog by the cloudformation template. They also include a small sample of data to aid the explanation of the coding syntax.
 
 Customers
