@@ -56,6 +56,7 @@ const example = require('example');
 
 // Usage example
 example.doSomething();
+
 ```bash
 
 dynamicFrameCustomers = glueContext.create_dynamic_frame.from_catalog(
