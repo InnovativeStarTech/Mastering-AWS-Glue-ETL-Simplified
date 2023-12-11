@@ -48,8 +48,24 @@ Below are the schemas for the tables created in the Glue Data Catalog by the clo
 3. Create Glue Notebook see videox
 
 4. Read data from Customers Table using Notebook Using Dynamic Frame
+<pre>
+    <code>
+         # Read from the customers table in the glue data catalog using a dynamic frame
+        dynamicFrameCustomers = glueContext.create_dynamic_frame.from_catalog(
+       database = "pyspark_tutorial_db", 
+       table_name = "customers"
+       )
+    </code>
+</pre>
 
-5. Read from the customers table in the glue data catalog using a dynamic frame
+5. Show the top 10 rows from the dynamic dataframe
+<pre>
+    <code>
+           dynamicFrameCustomers.show(10)
+     </code>
+</pre>
+
+6. Read from the customers table in the glue data catalog using a dynamic frame
 
 <pre>
     <code>
