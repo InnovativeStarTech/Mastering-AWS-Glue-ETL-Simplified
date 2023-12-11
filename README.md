@@ -247,8 +247,8 @@ from  pyspark.sql.functions import lit
 dfNewColumn = sparkDf.withColumn("date", lit("2022-07-24"))
 # show df with new column
 dfNewColumn.show()	    
-	</pre>
- </code>
+	</code>
+ </pre>
 Using concat to concatenate two columns together
 <pre>
     <code>
@@ -259,8 +259,8 @@ from  pyspark.sql.functions import concat
 dfNewFullName = sparkDf.withColumn("new_full_name",concat("firstname",concat(lit(' '),"lastname")))
 #show full name column 
 dfNewFullName.show()
-</pre>
-    </code>
+</code>
+    </pre>
 
 17. Dropping Columns
 <pre>
@@ -269,8 +269,8 @@ dfNewFullName.show()
 dfDropCol = sparkDf.drop("firstname","lastname")
 #show dropped column df
 dfDropCol.show()
-	    </pre>
-    </code>
+	    </code>
+    </pre>
 
 18. Renaming columns
 <pre>
@@ -281,16 +281,16 @@ dfRenameCol = sparkDf.withColumnRenamed("fullname","full_name")
 #show renamed column dataframe
 dfRenameCol.show()
 
- </pre>
-    </code>
+ </code>
+    </pre>
 
 19. GroupBy and Aggregate Operations
 <pre>
     <code>
 # Group by lastname then print counts of lastname and show
 sparkDf.groupBy("lastname").count().show()
-	     </pre>
-    </code>
+	     </code>
+    </pre>
 
 20. Filtering Columns and Where clauses
 <pre>
@@ -301,8 +301,8 @@ sparkDf.filter(sparkDf["lastname"] == "Adams").show()
 #Where clause
 # Where clause spark DataFrame for customers who have the last name Adams
 sparkDf.where("lastname =='Adams'").show()    
-	     </pre>
-    </code>
+	     </code>
+    </pre>
 
 21. Joins
 read up orders dataset and convert to spark dataframe
@@ -313,8 +313,8 @@ dfOrders = glueContext.create_dynamic_frame.from_catalog(
                                         database = "pyspark_tutorial_db", 
                                         table_name = "orders"
                                     ).toDF()
-	    </pre>
-    </code>
+	    </code>
+    </pre>
     
 Inner join for Spark Dataframe All Data
 <pre>
@@ -327,16 +327,16 @@ dfAdams = sparkDf.where("lastname =='Adams'")
 
 # inner join on Adams DF and orders
 dfAdams.join(dfOrders,dfAdams.customerid ==  dfOrders.customerid,"inner").show()
-	    </pre>
-    </code>
+	    </code>
+    </pre>
     
 Left Join
 <pre>
     <code>
 #left join on orders and adams df
 dfOrders.join(dfAdams,dfAdams.customerid ==  dfOrders.customerid,"left").show(100)
-</pre>
-    </code>
+</code>
+    </pre>
 
 22. Writing data down using the Glue Data Catalog
     
@@ -352,8 +352,8 @@ dyfCustomersConvert = DynamicFrame.fromDF(sparkDf, glueContext, "convert")
 
 #Show converted Glue Dynamic Frame
 dyfCustomersConvert.show()
-</pre>
-    </code>
+</code>
+    </pre>
     
 Write Dynamic DataFrame down to S3 location
 <pre>
@@ -368,8 +368,8 @@ glueContext.write_dynamic_frame.from_options(
                                 "separator": ","
                                 },
                             transformation_ctx = "datasink2")
-				    </pre>
-    </code>
+				    </code>
+    </pre>
 Write Dynamic DataFrame using Glue Data Catalog
 <pre>
     <code>
@@ -378,8 +378,8 @@ glueContext.write_dynamic_frame.from_catalog(
     frame = dyfCustomersConvert,
     database = "pyspark_tutorial_db",  
     table_name = "customers_write_dyf")
-    </pre>
     </code>
+    </pre>
 
     
 ##Enjoy 🤘    
