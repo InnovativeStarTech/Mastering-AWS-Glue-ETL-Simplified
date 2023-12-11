@@ -51,13 +51,13 @@ Below are the schemas for the tables created in the Glue Data Catalog by the clo
 
 5. Read from the customers table in the glue data catalog using a dynamic frame
 
-```bash
-const example = require('example');
-
-// Usage example
-example.doSomething();
-
-```bash
+<pre>
+    <code>
+          dynamicFrameCustomers = glueContext.create_dynamic_frame.from_catalog(
+          database = "pyspark_tutorial_db", 
+          table_name = "customers")
+    </code>
+</pre>
 
 dynamicFrameCustomers = glueContext.create_dynamic_frame.from_catalog(
 database = "pyspark_tutorial_db", 
