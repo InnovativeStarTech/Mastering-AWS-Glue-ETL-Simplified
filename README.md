@@ -41,15 +41,21 @@ Below are the schemas for the tables created in the Glue Data Catalog by the clo
 
 # Main tutorial
 
-Create Resources using supplied cloud formation template see video
+1. Create Resources using supplied cloud formation template see video
 
-Upload csv folder/files to S3 bucket see video
+2. Upload csv folder/files to S3 bucket see video
 
-Create Glue Notebook see videox
+3. Create Glue Notebook see videox
 
-Read data from Customers Table using Notebook Using Dynamic Frame
+4. Read data from Customers Table using Notebook Using Dynamic Frame
 
 # Read from the customers table in the glue data catalog using a dynamic frame
+
+const example = require('example');
+
+// Usage example
+example.doSomething();
+
 dynamicFrameCustomers = glueContext.create_dynamic_frame.from_catalog(
 database = "pyspark_tutorial_db", 
 table_name = "customers"
