@@ -264,12 +264,10 @@ dfNewFullName.show()
     </code>
 
 17. Dropping Columns
-
 <pre>
     <code>
 # Drop column from spark dataframe
 dfDropCol = sparkDf.drop("firstname","lastname")
-
 #show dropped column df
 dfDropCol.show()
 	    </pre>
