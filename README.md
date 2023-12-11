@@ -49,7 +49,7 @@ Below are the schemas for the tables created in the Glue Data Catalog by the clo
 
 4. Read data from Customers Table using Notebook Using Dynamic Frame
 
-# Read from the customers table in the glue data catalog using a dynamic frame
+5. Read from the customers table in the glue data catalog using a dynamic frame
 
 const example = require('example');
 
