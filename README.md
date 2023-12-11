@@ -50,13 +50,13 @@ Below are the schemas for the tables created in the Glue Data Catalog by the clo
 4. Read data from Customers Table using Notebook Using Dynamic Frame
 <pre>
     <code>
-         # Read from the customers table in the glue data catalog using a dynamic frame
-        dynamicFrameCustomers = glueContext.create_dynamic_frame.from_catalog(
-       database = "pyspark_tutorial_db", 
-       table_name = "customers"
-       )
-     # Show the top 10 rows from the dynamic dataframe
-     dynamicFrameCustomers.show(10)
+# Read from the customers table in the glue data catalog using a dynamic frame
+dynamicFrameCustomers = glueContext.create_dynamic_frame.from_catalog(
+database = "pyspark_tutorial_db", 
+table_name = "customers"
+ )
+# Show the top 10 rows from the dynamic dataframe
+dynamicFrameCustomers.show(10)
     </code>
 </pre>
 
@@ -72,16 +72,16 @@ dynamicFrameCustomers.printSchema()
 
 <pre>
     <code>
-          # Count The Number of Rows in a Dynamic Dataframe 
-          dynamicFrameCustomers.count()
-          # Selecting certain fields from a Dynamic DataFrame
-          dyfCustomerSelectFields = dynamicFrameCustomers.select_fields(["customerid", "fullname"])
-          # Show Top 10 rows of dyfCustomerDropFields Dynamic Frame
-          dynamicFrameCustomers.show(10)
-         #Drop Fields of Dynamic Frame
-         dyfCustomerDropFields = dynamicFrameCustomers.drop_fields(["firstname","lastname"])
-         # Show Top 10 rows of dyfCustomerDropFields Dynamic Frame
-         dyfCustomerDropFields.show(10)
+	# Count The Number of Rows in a Dynamic Dataframe 
+        dynamicFrameCustomers.count()
+        # Selecting certain fields from a Dynamic DataFrame
+        dyfCustomerSelectFields = dynamicFrameCustomers.select_fields(["customerid", "fullname"])
+        # Show Top 10 rows of dyfCustomerDropFields Dynamic Frame
+        dynamicFrameCustomers.show(10)
+        #Drop Fields of Dynamic Frame
+        dyfCustomerDropFields = dynamicFrameCustomers.drop_fields(["firstname","lastname"])
+        # Show Top 10 rows of dyfCustomerDropFields Dynamic Frame
+        dyfCustomerDropFields.show(10)
      </code>
 </pre>
 
