@@ -250,6 +250,13 @@ dfNewColumn = sparkDf.withColumn("date", lit("2022-07-24"))
 
 # show df with new column
 dfNewColumn.show()
+	     </code>
+</pre>
+
+Using concat to concatenate two columns together
+
+<pre>
+    <code>
 #Using concat to concatenate two columns together
 #import concat from functions 
 from  pyspark.sql.functions import concat
@@ -382,9 +389,6 @@ glueContext.write_dynamic_frame.from_catalog(
     table_name = "customers_write_dyf")
     </pre>
     </code>
+
     
-    
-	    
-
-
-
+##Enjoy 🤘    
