@@ -72,16 +72,16 @@ dynamicFrameCustomers.printSchema()
 
 <pre>
     <code>
-	# Count The Number of Rows in a Dynamic Dataframe 
-        dynamicFrameCustomers.count()
-        # Selecting certain fields from a Dynamic DataFrame
-        dyfCustomerSelectFields = dynamicFrameCustomers.select_fields(["customerid", "fullname"])
-        # Show Top 10 rows of dyfCustomerDropFields Dynamic Frame
-        dynamicFrameCustomers.show(10)
-        #Drop Fields of Dynamic Frame
-        dyfCustomerDropFields = dynamicFrameCustomers.drop_fields(["firstname","lastname"])
-        # Show Top 10 rows of dyfCustomerDropFields Dynamic Frame
-        dyfCustomerDropFields.show(10)
+# Count The Number of Rows in a Dynamic Dataframe 
+dynamicFrameCustomers.count()
+# Selecting certain fields from a Dynamic DataFrame
+dyfCustomerSelectFields = dynamicFrameCustomers.select_fields(["customerid", "fullname"])
+# Show Top 10 rows of dyfCustomerDropFields Dynamic Frame
+dynamicFrameCustomers.show(10)
+#Drop Fields of Dynamic Frame
+dyfCustomerDropFields = dynamicFrameCustomers.drop_fields(["firstname","lastname"])
+# Show Top 10 rows of dyfCustomerDropFields Dynamic Frame
+dyfCustomerDropFields.show(10)
      </code>
 </pre>
 
@@ -89,18 +89,17 @@ dynamicFrameCustomers.printSchema()
 
 <pre>
     <code>
-			# Mapping array for column rename fullname -> name
-			mapping=[("customerid", "long", "customerid","long"),("fullname", "string", "name", "string")]
+# Mapping array for column rename fullname -> name
+mapping=[("customerid", "long", "customerid","long"),("fullname", "string", "name", "string")]
 
-			# Apply the mapping to rename fullname -> name
-			dfyMapping = ApplyMapping.apply(
-                                frame = dyfCustomerDropFields, 
+# Apply the mapping to rename fullname -> name
+dfyMapping = ApplyMapping.apply(frame = dyfCustomerDropFields, 
                                 mappings = mapping, 
                                 transformation_ctx = "applymapping1"
                                 )
 
-			# show the new dynamic frame with name column 
-				dfyMapping.show(10)
+# show the new dynamic frame with name column 
+dfyMapping.show(10)
       </code>
 </pre>
      
@@ -108,14 +107,11 @@ dynamicFrameCustomers.printSchema()
 
 <pre>
     <code>
-				# Filter dynamicFrameCustomers for customers who have the last name Adams
-				dyfFilter=  Filter.apply(frame = dynamicFrameCustomers, 
-														f = lambda x: x["lastname"] in "Adams"
-													)
+# Filter dynamicFrameCustomers for customers who have the last name Adams
+dyfFilter=  Filter.apply(frame = dynamicFrameCustomers, f = lambda x: x["lastname"] in "Adams")
 
-				# Show the top 10 customers  from the filtered Dynamic frame 
-				dyfFilter.show(10)
-				
+# Show the top 10 customers  from the filtered Dynamic frame 
+dyfFilter.show(10)				
      </code>
 </pre>
 
