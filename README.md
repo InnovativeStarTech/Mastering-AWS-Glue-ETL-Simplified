@@ -244,10 +244,8 @@ dfSelect.show()
 #creating a new column with a literal string
 #import lit from sql functions 
 from  pyspark.sql.functions import lit
-
 # Add new column to spark dataframe
 dfNewColumn = sparkDf.withColumn("date", lit("2022-07-24"))
-
 # show df with new column
 dfNewColumn.show()
 	     </code>
