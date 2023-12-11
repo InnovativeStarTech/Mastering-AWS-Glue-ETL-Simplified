@@ -39,7 +39,7 @@ Below are the schemas for the tables created in the Glue Data Catalog by the clo
 |275 |274 |Michael |Blythe |Michael Blythe |Sales Representative |3 |S |M	|Northeast	|US	|North America|
 
 
-### Main tutorial
+# Main tutorial
 
 Create Resources using supplied cloud formation template see video
 
