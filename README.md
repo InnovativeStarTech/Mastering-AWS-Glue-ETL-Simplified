@@ -55,81 +55,76 @@ Below are the schemas for the tables created in the Glue Data Catalog by the clo
        database = "pyspark_tutorial_db", 
        table_name = "customers"
        )
+     # Show the top 10 rows from the dynamic dataframe
+     dynamicFrameCustomers.show(10)
     </code>
 </pre>
 
-5. Show the top 10 rows from the dynamic dataframe
+5. Check data types in Dynamic Frame
 <pre>
     <code>
-           dynamicFrameCustomers.show(10)
+# Check types in dynamic frame
+dynamicFrameCustomers.printSchema()
+    </code>
+</pre>
+
+6. Count The Number of Rows in a Dynamic DataFrame, select,drop fields from dynamic frame and top 10 rows
+
+<pre>
+    <code>
+          # Count The Number of Rows in a Dynamic Dataframe 
+          dynamicFrameCustomers.count()
+          # Selecting certain fields from a Dynamic DataFrame
+          dyfCustomerSelectFields = dynamicFrameCustomers.select_fields(["customerid", "fullname"])
+          # Show Top 10 rows of dyfCustomerDropFields Dynamic Frame
+          dynamicFrameCustomers.show(10)
+         #Drop Fields of Dynamic Frame
+         dyfCustomerDropFields = dynamicFrameCustomers.drop_fields(["firstname","lastname"])
+         # Show Top 10 rows of dyfCustomerDropFields Dynamic Frame
+         dyfCustomerDropFields.show(10)
      </code>
 </pre>
 
-6. Read from the customers table in the glue data catalog using a dynamic frame
+7. Rename Columns in a Dynamic Frame
 
 <pre>
     <code>
-          dynamicFrameCustomers = glueContext.create_dynamic_frame.from_catalog(
-          database = "pyspark_tutorial_db", 
-          table_name = "customers")
-    </code>
-</pre>
+			# Mapping array for column rename fullname -> name
+			mapping=[("customerid", "long", "customerid","long"),("fullname", "string", "name", "string")]
 
-dynamicFrameCustomers = glueContext.create_dynamic_frame.from_catalog(
-database = "pyspark_tutorial_db", 
-table_name = "customers"
-)
-
-# Show the top 10 rows from the dynamic dataframe
-dynamicFrameCustomers.show(10)
-Check data types in Dynamic Frame
-
-# Check types in dynamic frame
-dynamicFrameCustomers.printSchema()
-Count The Number of Rows in a Dynamic DataFrame
-
-# Count The Number of Rows in a Dynamic Dataframe 
-dynamicFrameCustomers.count()
-Select Fields From A Dynamic frame
-
-# Selecting certain fields from a Dynamic DataFrame
-dyfCustomerSelectFields = dynamicFrameCustomers.select_fields(["customerid", "fullname"])
-
-# Show top 10
-dyfCustomerSelectFields.show(10)
-Drop Columns in a Dynamic Frame
-
-#Drop Fields of Dynamic Frame
-dyfCustomerDropFields = dynamicFrameCustomers.drop_fields(["firstname","lastname"])
-
-# Show Top 10 rows of dyfCustomerDropFields Dynamic Frame
-dyfCustomerDropFields.show(10)
-Rename Columns in a Dynamic Frame
-
-# Mapping array for column rename fullname -> name
-mapping=[("customerid", "long", "customerid","long"),("fullname", "string", "name", "string")]
-
-# Apply the mapping to rename fullname -> name
-dfyMapping = ApplyMapping.apply(
+			# Apply the mapping to rename fullname -> name
+			dfyMapping = ApplyMapping.apply(
                                 frame = dyfCustomerDropFields, 
                                 mappings = mapping, 
                                 transformation_ctx = "applymapping1"
                                 )
 
-# show the new dynamic frame with name column 
-dfyMapping.show(10)
-Filter data in a Dynamic Frame
+			# show the new dynamic frame with name column 
+				dfyMapping.show(10)
+      </code>
+</pre>
+     
+8. Filter data in a Dynamic Frame
 
-# Filter dynamicFrameCustomers for customers who have the last name Adams
-dyfFilter=  Filter.apply(frame = dynamicFrameCustomers, 
-                                        f = lambda x: x["lastname"] in "Adams"
-                                    )
+<pre>
+    <code>
+				# Filter dynamicFrameCustomers for customers who have the last name Adams
+				dyfFilter=  Filter.apply(frame = dynamicFrameCustomers, 
+														f = lambda x: x["lastname"] in "Adams"
+													)
 
-# Show the top 10 customers  from the filtered Dynamic frame 
-dyfFilter.show(10)
-Join Two Dynamic frames on a equality join
+				# Show the top 10 customers  from the filtered Dynamic frame 
+				dyfFilter.show(10)
+				
+     </code>
+</pre>
 
-read up orders dynamic frame
+
+9. Join Two Dynamic frames on a equality join
+
+<pre>
+    <code>
+#read up orders dynamic frame
 # Read from the customers table in the glue data catalog using a dynamic frame
 dynamicFrameOrders = glueContext.create_dynamic_frame.from_catalog(
 database = "pyspark_tutorial_db", 
@@ -138,16 +133,21 @@ table_name = "orders"
 
 # show top 10 rows of orders table
 dynamicFrameOrders.show(10)
-join customers and orders dynamic frame
+#join customers and orders dynamic frame
 # Join two dynamic frames on an equality join
 dyfjoin = dynamicFrameCustomers.join(["customerid"],["customerid"],dynamicFrameOrders)
 
 # show top 10 rows for the joined dynamic 
 dyfjoin.show(10)
-Write Down Data from a Dynamic Frame To S3
+     </code>
+</pre>
 
-Create a folder in the S3 bucket created by Cloudformation to use as a location to write the data down to write_down_dyf_to_s3
-Write down data to S3 using the dynamic DataFrame writer class for an S3 path.
+10. Write Down Data from a Dynamic Frame To S3
+
+<pre>
+    <code>
+#Create a folder in the S3 bucket created by Cloudformation to use as a location to write the data down to write_down_dyf_to_s3
+#Write down data to S3 using the dynamic DataFrame writer class for an S3 path.
 # write down the data in a Dynamic Frame to S3 location. 
 glueContext.write_dynamic_frame.from_options(
                         frame = dynamicFrameCustomers,
@@ -158,115 +158,7 @@ glueContext.write_dynamic_frame.from_options(
                             "separator": ","
                             },
                         transformation_ctx = "datasink2")
-Write Down Data from a Dynamic Frame using Glue Data Catalog
-
-# write data from the dynamicFrameCustomers to customers_write_dyf table using the meta data stored in the glue data catalog 
-glueContext.write_dynamic_frame.from_catalog(
-    frame=dynamicFrameCustomers,
-    database = "pyspark_tutorial_db",  
-    table_name = "customers_write_dyf"
-)
-Convert from Dynamic Frame To Spark DataFrame
-
-# Dynamic Frame to Spark DataFrame 
-sparkDf = dynamicFrameCustomers.toDF()
-
-#show spark DF
-sparkDf.show()
-Selecting Columns In a Spark DataFrame
-
-# Select columns from spark dataframe
-dfSelect = sparkDf.select("customerid","fullname")
-
-# show selected
-dfSelect.show()
-Add Columns In A Spark Dataframe
-
-creating a new column with a literal string
-#import lit from sql functions 
-from  pyspark.sql.functions import lit
-
-# Add new column to spark dataframe
-dfNewColumn = sparkDf.withColumn("date", lit("2022-07-24"))
-
-# show df with new column
-dfNewColumn.show()
-Using concat to concatenate two columns together
-#import concat from functions 
-from  pyspark.sql.functions import concat
-
-# create another full name column
-dfNewFullName = sparkDf.withColumn("new_full_name",concat("firstname",concat(lit(' '),"lastname")))
-
-#show full name column 
-dfNewFullName.show()
-Dropping Columns
-# Drop column from spark dataframe
-dfDropCol = sparkDf.drop("firstname","lastname")
-
-#show dropped column df
-dfDropCol.show()
-Renaming columns
-# Rename column in Spark dataframe
-dfRenameCol = sparkDf.withColumnRenamed("fullname","full_name")
-
-#show renamed column dataframe
-dfRenameCol.show()
-GroupBy and Aggregate Operations
-# Group by lastname then print counts of lastname and show
-sparkDf.groupBy("lastname").count().show()
-Filtering Columns and Where clauses
-Filter the spark dataframe
-# Filter spark DataFrame for customers who have the last name Adams
-sparkDf.filter(sparkDf["lastname"] == "Adams").show()
-Where clause
-# Where clause spark DataFrame for customers who have the last name Adams
-sparkDf.where("lastname =='Adams'").show()
-Joins
-read up orders dataset and convert to spark dataframe
-# Read from the customers table in the glue data catalog using a dynamic frame and convert to spark dataframe
-dfOrders = glueContext.create_dynamic_frame.from_catalog(
-                                        database = "pyspark_tutorial_db", 
-                                        table_name = "orders"
-                                    ).toDF()
-Inner join for Spark Dataframe All Data
-# Inner Join Customers Spark DF to Orders Spark DF
-sparkDf.join(dfOrders,sparkDf.customerid ==  dfOrders.customerid,"inner").show(truncate=False)
-Inner Join Adams only
-#Get customers that only have surname Adams
-dfAdams = sparkDf.where("lastname =='Adams'")
-
-# inner join on Adams DF and orders
-dfAdams.join(dfOrders,dfAdams.customerid ==  dfOrders.customerid,"inner").show()
-Left Join
-#left join on orders and adams df
-dfOrders.join(dfAdams,dfAdams.customerid ==  dfOrders.customerid,"left").show(100)
-Writing data down using the Glue Data Catalog
-delete data from S3 in customers_write_dyf and write_down_dyf_to_s3
-convert from spark Dataframe to Glue Dynamic DataFrame
-# Import Dynamic DataFrame class
-from awsglue.dynamicframe import DynamicFrame
-
-#Convert from Spark Data Frame to Glue Dynamic Frame
-dyfCustomersConvert = DynamicFrame.fromDF(sparkDf, glueContext, "convert")
-
-#Show converted Glue Dynamic Frame
-dyfCustomersConvert.show()
-Write Dynamic DataFrame down to S3 location
-# write down the data in converted Dynamic Frame to S3 location. 
-glueContext.write_dynamic_frame.from_options(
-                            frame = dyfCustomersConvert,
-                            connection_type="s3", 
-                            connection_options = {"path": "s3://<YOUR_S3_BUCKET_NAME>/write_down_dyf_to_s3"}, 
-                            format = "csv", 
-                            format_options={
-                                "separator": ","
-                                },
-                            transformation_ctx = "datasink2")
-Write Dynamic DataFrame using Glue Data Catalog
-# write data from the converted to customers_write_dyf table using the meta data stored in the glue data catalog 
-glueContext.write_dynamic_frame.from_catalog(
-    frame = dyfCustomersConvert,
-    database = "pyspark_tutorial_db",  
-    table_name = "customers_write_dyf")
+						
+						     </code>
+</pre>
 
