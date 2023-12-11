@@ -162,3 +162,28 @@ glueContext.write_dynamic_frame.from_options(
 						     </code>
 </pre>
 
+
+11. Join Two Dynamic frames on a equality join
+
+<pre>
+    <code>
+#read up orders dynamic frame
+# Read from the customers table in the glue data catalog using a dynamic frame
+dynamicFrameOrders = glueContext.create_dynamic_frame.from_catalog(
+database = "pyspark_tutorial_db", 
+table_name = "orders"
+)
+
+# show top 10 rows of orders table
+dynamicFrameOrders.show(10)
+#join customers and orders dynamic frame
+# Join two dynamic frames on an equality join
+dyfjoin = dynamicFrameCustomers.join(["customerid"],["customerid"],dynamicFrameOrders)
+
+# show top 10 rows for the joined dynamic 
+dyfjoin.show(10)
+	    						     </code>
+</pre>
+
+
+
