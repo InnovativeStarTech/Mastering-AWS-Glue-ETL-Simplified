@@ -238,7 +238,6 @@ dfSelect.show()
 </pre>
 
 16. Add Columns In A Spark Dataframe
-
 <pre>
     <code>
 #creating a new column with a literal string
@@ -247,9 +246,9 @@ from  pyspark.sql.functions import lit
 # Add new column to spark dataframe
 dfNewColumn = sparkDf.withColumn("date", lit("2022-07-24"))
 # show df with new column
-dfNewColumn.show()
-	     </code>
-</pre>
+dfNewColumn.show()	    
+	</pre>
+ </code>
 Using concat to concatenate two columns together
 <pre>
     <code>
