@@ -250,18 +250,14 @@ dfNewColumn = sparkDf.withColumn("date", lit("2022-07-24"))
 dfNewColumn.show()
 	     </code>
 </pre>
-
 Using concat to concatenate two columns together
-
 <pre>
     <code>
 #Using concat to concatenate two columns together
 #import concat from functions 
 from  pyspark.sql.functions import concat
-
 # create another full name column
 dfNewFullName = sparkDf.withColumn("new_full_name",concat("firstname",concat(lit(' '),"lastname")))
-
 #show full name column 
 dfNewFullName.show()
 </pre>
